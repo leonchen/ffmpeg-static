@@ -57,6 +57,15 @@ EXTERNALPROJECT_ADD(
   BUILD_IN_SOURCE 1
 )
 
+EXTERNALPROJECT_ADD(
+  libopenjp2
+  URL https://github.com/uclouvain/openjpeg/releases/download/v2.3.0/openjpeg-v2.3.0-linux-x86_64.tar.gz
+  CONFIGURE_COMMAND sh -c "rm -rf ./build && mkdir build && cd ./build && cmake -DCMAKE_BUILD_TYPE=Release .."
+  BUILD_COMMAND sh -c "cd ./build && make"
+  INSTALL_COMMAND sh -c "cd ./build && make DESTDIR=${CMAKE_BINARY_DIR} install"
+  BUILD_IN_SOURCE 1
+)
+
 SET(FFMPEG_COMPONENTS --disable-doc --disable-postproc --disable-debug --disable-indevs --disable-outdevs --disable-sdl2 --disable-lzma --disable-iconv)
 LIST(APPEND FFMPEG_COMPONENTS --enable-static --enable-gpl --enable-pic --enable-libx264 --enable-ffmpeg --enable-ffprobe --disable-ffplay --disable-hwaccels --disable-v4l2-m2m --disable-vaapi --disable-vdpau --disable-videotoolbox --disable-audiotoolbox)
 LIST(APPEND FFMPEG_COMPONENTS --enable-avcodec --enable-avformat --enable-avfilter --enable-swresample --enable-swscale --enable-avutil --enable-libopenjpeg)
@@ -66,7 +75,7 @@ LIST(APPEND FFMPEG_COMPONENTS --disable-decoders --enable-decoder=h264,hevc,aac)
 LIST(APPEND FFMPEG_COMPONENTS --disable-encoders --enable-encoder=libx264,aac,png)
 LIST(APPEND FFMPEG_COMPONENTS --disable-filters --enable-filter=scale,copy,concat,split,setpts,bwdif)
 LIST(APPEND FFMPEG_COMPONENTS --disable-protocols --enable-protocol=file,pipe,unix,concat)
-LIST(APPEND FFMPEG_COMPONENTS --extra-cflags=-I${CMAKE_BINARY_DIR}/include --extra-ldflags=-L${CMAKE_BINARY_DIR}/lib --extra-libs=-lpng\ -lz\ -lstdc++\ -lm\ -ldl)
+LIST(APPEND FFMPEG_COMPONENTS --extra-cflags=-I${CMAKE_BINARY_DIR}/include --extra-ldflags=-L${CMAKE_BINARY_DIR}/lib --extra-libs=-lpng\ -lz\ -lstdc++\ -lm\ -ldl\ -lopenjp2)
 
 EXTERNALPROJECT_ADD(
   ffmpeg
