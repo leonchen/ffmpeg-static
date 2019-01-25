@@ -75,7 +75,7 @@ LIST(APPEND FFMPEG_COMPONENTS --disable-decoders --enable-decoder=h264,hevc,aac)
 LIST(APPEND FFMPEG_COMPONENTS --disable-encoders --enable-encoder=libx264,aac,png)
 LIST(APPEND FFMPEG_COMPONENTS --disable-filters --enable-filter=scale,copy,concat,split,setpts,bwdif)
 LIST(APPEND FFMPEG_COMPONENTS --disable-protocols --enable-protocol=file,pipe,unix,concat)
-LIST(APPEND FFMPEG_COMPONENTS --extra-cflags=-I${CMAKE_BINARY_DIR}/include --extra-ldflags=-L${CMAKE_BINARY_DIR}/lib --extra-libs=-lpng\ -lz\ -lstdc++\ -lm\ -ldl\ -lopenjpeg)
+LIST(APPEND FFMPEG_COMPONENTS --extra-cflags=-I${CMAKE_BINARY_DIR}/include --extra-ldflags=-L${CMAKE_BINARY_DIR}/lib --extra-libs=-lpng\ -lz\ -lstdc++\ -lm\ -ldl)
 
 EXTERNALPROJECT_ADD(
   ffmpeg
