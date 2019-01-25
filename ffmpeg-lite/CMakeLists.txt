@@ -59,7 +59,7 @@ EXTERNALPROJECT_ADD(
 
 EXTERNALPROJECT_ADD(
   libopenjp2
-  URL https://github.com/uclouvain/openjpeg/releases/download/v2.3.0/openjpeg-v2.3.0-linux-x86_64.tar.gz
+  URL https://github.com/uclouvain/openjpeg/archive/v2.3.0.tar.gz
   CONFIGURE_COMMAND sh -c "rm -rf ./build && mkdir build && cd ./build && cmake -DCMAKE_BUILD_TYPE=Release .."
   BUILD_COMMAND sh -c "cd ./build && make"
   INSTALL_COMMAND sh -c "cd ./build && make DESTDIR=${CMAKE_BINARY_DIR} install"
